@@ -1,0 +1,282 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* dealer form */
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f3f4f6;
+}
+
+/* Main Container */
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.bg-gray-100 {
+  background-color: #f3f4f6;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+/* Form Container */
+.bg-white {
+  background-color: #ffffff;
+}
+
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.rounded-2xl {
+  border-radius: 1rem;
+}
+
+.p-8 {
+  padding: 2rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.max-w-lg {
+  max-width: 32rem;
+}
+
+/* Heading */
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Form Elements */
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.block {
+  display: block;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.border {
+  border: 1px solid #d1d5db;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+/* Input Focus States */
+input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Button Styles */
+.bg-blue-600 {
+  background-color: #2563eb;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.p-3 {
+  padding: 0.75rem;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.hover\:bg-blue-700:hover {
+  background-color: #1d4ed8;
+}
+
+.transition {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Button Focus and Active States */
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+/* Response Message */
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.bg-green-100 {
+  background-color: #dcfce7;
+}
+
+.text-green-800 {
+  color: #166534;
+}
+
+.rounded-xl {
+  border-radius: 0.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .p-6 {
+    padding: 1rem;
+  }
+  
+  .p-8 {
+    padding: 1.5rem;
+  }
+  
+  .text-2xl {
+    font-size: 1.25rem;
+  }
+}
+
+/* Animation for form submission */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bg-green-100 {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Custom scrollbar for response pre tag */
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Loading state for button */
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+button:disabled:hover {
+  background-color: #2563eb;
+}
+
+

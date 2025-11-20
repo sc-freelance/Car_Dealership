@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Swim Converter</title>
+    <style>
+       
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 800px;
+            padding: 30px;
+            margin: 40px auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2575fc;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .converter-box {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .input-field {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e1e5ee;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s;
+            width: 150px;
+        }
+        
+        .input-field:focus {
+            border-color: #2575fc;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.1);
+        }
+        
+        .select-field {
+            padding: 12px 15px;
+            border: 2px solid #e1e5ee;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 150px;
+        }
+        
+        .select-field:focus {
+            border-color: #2575fc;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.1);
+        }
+        
+        .swap-btn {
+            background-color: #2575fc;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .swap-btn:hover {
+            background-color: #1a68e8;
+            transform: scale(1.05);
+        }
+        
+        .result-box {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .result-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .result-value {
+            font-size: 24px;
+            font-weight: 600;
+            color: #2575fc;
+        }
+        
+        .unit-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #e1e5ee;
+        }
+        
+        .unit-info h3 {
+            color: #2575fc;
+            margin-bottom: 10px;
+        }
+        
+        .unit-info p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Time Swim Converter</h1>
+        <p class="subtitle">Convert between different time units easily</p>
+        
+        <div class="converter-box">
+            <div class="input-group">
+                <input type="number" id="inputValue" class="input-field" placeholder="Enter value" value="1" min="0">
+                <select id="inputUnit" class="select-field">
+                    <option value="seconds">Seconds</option>
+                    <option value="minutes">Minutes</option>
+                    <option value="hours">Hours</option>
+                    <option value="days">Days</option>
+                    <option value="weeks">Weeks</option>
+                </select>
+            </div>
+            
+            <div class="input-group">
+                <input type="number" id="outputValue" class="input-field" placeholder="Result" readonly>
+                <select id="outputUnit" class="select-field">
+                    <option value="seconds">Seconds</option>
+                    <option value="minutes">Minutes</option>
+                    <option value="hours">Hours</option>
+                    <option value="days" selected>Days</option>
+                    <option value="weeks">Weeks</option>
+                </select>
+            </div>
+            
+            <button id="swapBtn" class="swap-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="17 1 21 5 17 9"></polyline>
+                    <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                    <polyline points="7 23 3 19 7 15"></polyline>
+                    <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="result-box">
+            <div class="result-label">Converted Value</div>
+            <div id="resultValue" class="result-value">1 day</div>
+        </div>
+        
+        <div class="unit-info">
+            <h3>Time Unit Information</h3>
+            <p>1 minute = 60 seconds | 1 hour = 60 minutes | 1 day = 24 hours | 1 week = 7 days</p>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const inputValue = document.getElementById('inputValue');
+        const inputUnit = document.getElementById('inputUnit');
+        const outputValue = document.getElementById('outputValue');
+        const outputUnit = document.getElementById('outputUnit');
+        const swapBtn = document.getElementById('swapBtn');
+        const resultValue = document.getElementById('resultValue');
+        
+        // Conversion factors relative to seconds
+        const conversionFactors = {
+            seconds: 1,
+            minutes: 60,
+            hours: 3600,
+            days: 86400,
+            weeks: 604800
+        };
+        
+        // Function to convert time
+        function convertTime() {
+            const value = parseFloat(inputValue.value);
+            
+            if (isNaN(value) || value < 0) {
+                outputValue.value = '';
+                resultValue.textContent = 'Invalid input';
+                return;
+            }
+            
+            const fromUnit = inputUnit.value;
+            const toUnit = outputUnit.value;
+            
+            // Convert to seconds first, then to target unit
+            const valueInSeconds = value * conversionFactors[fromUnit];
+            const convertedValue = valueInSeconds / conversionFactors[toUnit];
+            
+            // Format the result
+            outputValue.value = convertedValue.toFixed(6);
+            
+            // Update the result display
+            const pluralFrom = value !== 1 ? 's' : '';
+            const pluralTo = convertedValue !== 1 ? 's' : '';
+            resultValue.textContent = `${value} ${fromUnit}${pluralFrom} = ${convertedValue.toFixed(4)} ${toUnit}${pluralTo}`;
+        }
+        
+        // Function to swap units
+        function swapUnits() {
+            const tempUnit = inputUnit.value;
+            inputUnit.value = outputUnit.value;
+            outputUnit.value = tempUnit;
+            convertTime();
+        }
+        
+        // Event Listeners
+        inputValue.addEventListener('input', convertTime);
+        inputUnit.addEventListener('change', convertTime);
+        outputUnit.addEventListener('change', convertTime);
+        swapBtn.addEventListener('click', swapUnits);
+        
+        // Initial conversion
+        convertTime();
+    </script>
+</body>
+</html>
