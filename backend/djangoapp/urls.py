@@ -33,9 +33,14 @@ urlpatterns = [
     # path for handling review post requests
     path(route='add_review', view=views.add_review, name='add_review'),
 
+    # path for API endpoints
     path('dealers/', DealerListCreate.as_view(), name='dealer-list'),
+
     path('dealers/<int:pk>/', DealerDetail.as_view(), name='dealer-detail'),
+
+    # path for review API
     path('reviews/', views.review_api, name='review-api'),
+    
     # urls.py
     path('dealer/<int:dealer_id>/add-review/', add_dealer_review),
 

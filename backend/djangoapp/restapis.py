@@ -1,15 +1,17 @@
-# Uncomment the imports below before you add the function code
-import requests
+import requests 
 import os
 from dotenv import load_dotenv
 
+# Load environment variables from a .env file
 load_dotenv()
 
 backend_url = 'https://saadchughtai-3030.theiadockernext-1-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai'
 sentiment_analyzer_url = 'https://sentianalyzer.21aoy1ppq6ut.us-south.codeengine.appdomain.cloud'
 
+# Function to make GET requests
 def get_request(endpoint, **kwargs):
     params = ""
+    # Append parameters to URL if any
     if(kwargs):
         for key, value in kwargs.items():
             params=params+key+"="+value+"&"
@@ -34,9 +36,11 @@ def analyze_review_sentiments(text):
         print(f"Unexpected {err=}, {type(err)=}")
         print("Network exception occurred")
 
+# Function to make POST requests
 def post_review(data_dict):
     request_url = backend_url+"/insert_review"
     try:
+        # Call post method of requests library with URL and parameters
         response = requests.post(request_url,json=data_dict)
         print(response.json())
         return response.json()

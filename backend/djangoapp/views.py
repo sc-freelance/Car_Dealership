@@ -122,13 +122,14 @@ def add_review(request, dealer_id):
     else:
         return JsonResponse({"status":400,"message":"Bad Request"})
 
-
+# Create a 'get_cars' view to render the car models
 def get_cars(request):
     count = CarMake.objects.filter().count()
     print("CarMake count before:", count)
     if count == 0:
         print("Running initiate()...")
         initiate()
+    # Fetch all CarModel objects with related CarMake data
     car_models = CarModel.objects.select_related('car_make')
     print("CarModels found:", car_models.count())
     cars = []
@@ -161,6 +162,7 @@ def add_dealer_review(request, dealer_id):
 
 
 def add_review(request):
+    # Check if user is authenticated
     if(request.user.is_anonymous == False):
         data = json.loads(request.body)
         try:
@@ -174,18 +176,20 @@ def add_review(request):
 def get_dealer_reviews(request, dealer_id):
     if dealer_id:
         endpoint = f"/fetchReviews/dealer/{dealer_id}"
-        reviews = get_request(endpoint)
+        reviews = get_request(endpoint) # Fetch reviews from external API
         for review_detail in reviews:
-            response = analyze_review_sentiments(review_detail.get('review', ''))
-            review_detail['sentiment'] = response.get('sentiment', 'neutral')
+            response = analyze_review_sentiments(review_detail.get('review', '')) # Analyze sentiment
+            review_detail['sentiment'] = response.get('sentiment', 'neutral') # Set sentiment
         return JsonResponse({"status": 200, "reviews": reviews})
     else:
         return JsonResponse({"status": 400, "message": "Bad Request"})
 
+# API views for Dealer and DealerReview
 class DealerListCreate(generics.ListCreateAPIView):
     queryset = Dealer.objects.all()
     serializer_class = DealerSerializer
 
+# Detail, Update, Delete for Dealer
 class DealerDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Dealer.objects.all()
     serializer_class = DealerSerializer

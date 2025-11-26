@@ -2,7 +2,7 @@ from rest_framework import serializers # Importing serializers from Django REST 
 from .models import Dealer, DealerReview # Importing Dealer and DealerReview models
 
 # Dealer Serializer
-class DealerSerializer(serializers.ModelSerializer):
+class DealerSerializer(serializers.ModelSerializer): 
     class Meta:
         model = Dealer
         fields = '__all__'

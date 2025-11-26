@@ -1,5 +1,5 @@
 # Base Python image
-FROM python:3.11-slim
+FROM python:3.12 
 
 # Set working directory
 WORKDIR/ app
@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 8000
 
 # Command to run the application
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
