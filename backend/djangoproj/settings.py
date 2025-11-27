@@ -1,5 +1,3 @@
-
-
 import os
 from pathlib import Path
 
@@ -18,7 +16,7 @@ SECRET_KEY =\
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
 CORS_ALLOW_ALL_ORIGINS = True
 
 # CSRF Settings
@@ -75,6 +73,9 @@ TEMPLATES = [
     },
 ]
 
+# Update the TEMPLATES setting to point to React build directory
+TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, "frontend_build")]
+
 # WSGI application
 WSGI_APPLICATION = 'djangoproj.wsgi.application'
 
@@ -128,7 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
 MEDIA_URL = '/media/'
 
@@ -148,4 +149,6 @@ SESSION_COOKIE_AGE = 86400
 
 # Make cookie persist across browser restarts
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False  
+
+
 
